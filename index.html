@@ -2,120 +2,435 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mohammad Malek - Developer Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mohammad Husen — Portfolio</title>
+  <meta name="description" content="Premium single-page portfolio of Mohammad Husen — Software Engineer & Full‑Stack Developer (Python, Odoo, JS)." />
+  <meta name="author" content="Mohammad Husen" />
+  <meta property="og:title" content="Mohammad Husen — Premium Portfolio" />
+  <meta property="og:description" content="Software Engineer • Odoo • Python • JS • Backend & Frontend" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://your-github-username.github.io/" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1526378722484-bd91ca387e72?q=80&w=1200&auto=format&fit=crop" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            base: {
+              50: '#f6f7fb', 100: '#eef0f7', 200: '#dfe2ee', 300: '#c6cce0', 400: '#9aa6c4',
+              500: '#6f80a9', 600: '#52648f', 700: '#3f4c6c', 800: '#2b3348', 900: '#191d2a',
+            },
+            primary: {
+              50: '#eefaff', 100: '#d6f1ff', 200: '#b0e4ff', 300: '#7cd1ff', 400: '#39b6ff', 500: '#0aa5ff', 600: '#0086db', 700: '#0068aa', 800: '#004d7d', 900: '#003352',
+            },
+            accent: '#22d3ee',
+          },
+          boxShadow: {
+            soft: '0 10px 30px -10px rgba(2, 6, 23, .35)',
+            glass: 'inset 0 1px 0 rgba(255,255,255,.08), 0 12px 30px -8px rgba(2,6,23,.5)'
+          },
+          animation: {
+            float: 'float 6s ease-in-out infinite',
+            blob: 'blob 20s infinite',
+            fadeUp: 'fadeUp .8s ease both',
+          },
+          keyframes: {
+            float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-8px)' } },
+            blob: {
+              '0%': { transform: 'translate(0px, 0px) scale(1)' },
+              '33%': { transform: 'translate(20px, -30px) scale(1.05)' },
+              '66%': { transform: 'translate(-20px, 10px) scale(0.98)' },
+              '100%': { transform: 'translate(0px, 0px) scale(1)' },
+            },
+            fadeUp: { from: { opacity: 0, transform: 'translateY(16px)' }, to: { opacity: 1, transform: 'translateY(0)' } }
+          }
+        }
+      },
+      darkMode: 'class'
+    }
+  </script>
+  <style>
+    :root { color-scheme: light dark; }
+    html { scroll-behavior: smooth; }
+    .container-prose p { @apply text-base/relaxed text-base-700 dark:text-base-200; }
+    .glass { backdrop-filter: saturate(160%) blur(10px); background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); }
+    .grad-text { background: linear-gradient(90deg, #22d3ee, #60a5fa, #a78bfa); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .section { scroll-margin-top: 88px; }
+  </style>
 </head>
-<body class="font-sans text-gray-800 bg-gray-50">
+<body class="bg-base-900 text-white selection:bg-primary-300/40 antialiased">
+  <!-- Backdrop blobs -->
+  <div aria-hidden class="pointer-events-none fixed inset-0 overflow-hidden">
+    <div class="absolute -top-32 -left-20 h-96 w-96 rounded-full bg-primary-500/20 blur-3xl animate-blob"></div>
+    <div class="absolute top-40 -right-10 h-[28rem] w-[28rem] rounded-full bg-accent/10 blur-3xl animate-blob [animation-delay:4s]"></div>
+  </div>
+
+  <!-- NAVBAR -->
+  <header class="fixed top-0 inset-x-0 z-50">
+    <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mt-4 flex items-center justify-between rounded-2xl border border-white/10 bg-base-800/70 glass px-4 py-3 shadow-soft">
+        <a href="#home" class="flex items-center gap-3">
+          <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary-500 to-indigo-500 shadow-glass font-bold">MH</span>
+          <span class="font-semibold tracking-tight">Mohammad Husen</span>
+        </a>
+        <div class="hidden md:flex items-center gap-6 text-sm">
+          <a class="hover:text-primary-300" href="#about">About</a>
+          <a class="hover:text-primary-300" href="#skills">Skills</a>
+          <a class="hover:text-primary-300" href="#projects">Projects</a>
+          <a class="hover:text-primary-300" href="#experience">Experience</a>
+          <a class="hover:text-primary-300" href="#contact">Contact</a>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="themeToggle" aria-label="Toggle theme" class="rounded-xl border border-white/10 bg-base-900/60 px-3 py-2 hover:bg-base-700/60">
+            <svg id="sun" class="h-4 w-4 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+            <svg id="moon" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+          <a href="https://wa.me/7405292322" target="_blank" class="hidden sm:inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-primary-500 to-sky-500 px-4 py-2 text-sm font-semibold text-white shadow-soft hover:opacity-95">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20 3H4a1 1 0 0 0-1 1v16l4-4h13a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1z"/></svg>
+            Hire Me
+          </a>
+          <button id="menuBtn" class="md:hidden rounded-xl border border-white/10 bg-base-900/60 p-2">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+          </button>
+        </div>
+      </div>
+      <!-- mobile -->
+      <div id="mobileMenu" class="md:hidden hidden mt-2 rounded-2xl border border-white/10 bg-base-800/70 glass p-4">
+        <div class="grid gap-3 text-sm">
+          <a class="hover:text-primary-300" href="#about">About</a>
+          <a class="hover:text-primary-300" href="#skills">Skills</a>
+          <a class="hover:text-primary-300" href="#projects">Projects</a>
+          <a class="hover:text-primary-300" href="#experience">Experience</a>
+          <a class="hover:text-primary-300" href="#contact">Contact</a>
+        </div>
+      </div>
+    </nav>
+  </header>
 
   <!-- HERO -->
-  <section class="relative h-screen flex items-center justify-center text-center text-white">
-    <img src="https://media.licdn.com/dms/image/v2/D4D16AQFWvl5qZxzwMQ/profile-displaybackgroundimage-shrink_350_1400/B4DZh1qtvSG8AY-/0/1754320793336?e=1758758400&v=beta&t=wOgvcBlTAfNfoZPda2uxMxEVeRK5vm5DA1oZDApecTU" 
-         alt="Banner" 
-         class="absolute inset-0 w-full h-full object-cover" />
-    <div class="absolute inset-0 bg-black/60"></div>
-    <div class="relative z-10 px-4">
-      <h1 class="text-5xl md:text-6xl font-bold mb-4">Hi, I'm <span class="text-blue-400">Mohammad Malek</span></h1>
-      <p class="text-xl md:text-2xl mb-6">Full Stack Odoo & Web Developer</p>
-      <a href="#contact" class="px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-full text-lg font-medium">Let’s Connect</a>
+  <section id="home" class="section relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-40">
+    <div class="grid items-center gap-8 lg:grid-cols-2">
+      <div class="space-y-6">
+        <p class="text-sm font-semibold tracking-widest text-primary-300">SOFTWARE ENGINEER · FULL‑STACK</p>
+        <h1 class="text-4xl/tight sm:text-5xl/tight font-extrabold">
+          Hi, I’m <span class="grad-text">Mohammad Husen</span>.
+          <br /><span class="text-white/90">I build robust, scalable apps in Python, Odoo & JavaScript.</span>
+        </h1>
+        <p class="max-w-xl text-base/relaxed text-white/70">
+          Backend first. Frontend polished. I design and ship secure APIs, clean UIs, and production‑ready integrations — from Odoo customizations to modern JS stacks.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="#projects" class="rounded-xl bg-white text-base-900 px-5 py-3 font-semibold shadow-soft hover:shadow-lg hover:-translate-y-0.5 transition">View Projects</a>
+          <a href="mailto:mhusenit@gmail.com" class="rounded-xl border border-white/15 bg-base-900/60 px-5 py-3 font-semibold hover:bg-base-800/60">Email Me</a>
+          <a href="https://github.com/mohammadhusen" target="_blank" class="rounded-xl border border-white/15 bg-base-900/60 px-5 py-3 font-semibold hover:bg-base-800/60">GitHub</a>
+        </div>
+        <div class="flex items-center gap-6 pt-2 text-white/60">
+          <div class="flex -space-x-2">
+            <img alt="stack" class="h-8 w-8 rounded-full ring-2 ring-base-900" src="https://api.iconify.design/logos/python.svg" />
+            <img alt="stack" class="h-8 w-8 rounded-full ring-2 ring-base-900" src="https://api.iconify.design/logos/odoo.svg" />
+            <img alt="stack" class="h-8 w-8 rounded-full ring-2 ring-base-900" src="https://api.iconify.design/logos/nodejs-icon.svg" />
+            <img alt="stack" class="h-8 w-8 rounded-full ring-2 ring-base-900" src="https://api.iconify.design/logos/react.svg" />
+          </div>
+          <span class="text-sm">Python · Odoo · Node · React</span>
+        </div>
+      </div>
+      <div class="relative">
+        <div class="absolute -inset-4 rounded-3xl bg-gradient-to-br from-primary-500/20 via-fuchsia-500/10 to-transparent blur-2xl"></div>
+        <div class="relative glass border border-white/10 rounded-3xl p-2 shadow-glass">
+          <img alt="profile" class="h-[420px] w-full object-cover rounded-2xl" src="md.jpg"/>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- ABOUT -->
-  <section id="about" class="max-w-5xl mx-auto py-16 px-6 text-center">
-    <h2 class="text-3xl font-bold mb-6">About Me</h2>
-    <p class="text-lg leading-relaxed text-gray-600">
-      I'm a passionate developer with strong expertise in <span class="text-blue-500 font-semibold">Odoo, Python, and Web Development</span>.
-      I specialize in building scalable business applications, custom modules, and intuitive user interfaces.
-      With a problem-solving mindset, I focus on delivering high-quality solutions that make an impact.
-    </p>
+  <section id="about" class="section mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
+    <div class="grid lg:grid-cols-3 gap-10">
+      <div class="lg:col-span-1">
+        <h2 class="text-3xl font-bold">What I Do</h2>
+        <p class="mt-2 text-white/70">Product‑minded engineering across backend, integrations, and clean interfaces.</p>
+      </div>
+      <div class="lg:col-span-2 grid sm:grid-cols-2 gap-6">
+        <div class="glass rounded-2xl border border-white/10 p-6 shadow-soft">
+          <h3 class="font-semibold text-lg">Backend & APIs</h3>
+          <p class="mt-2 text-white/70">Python, Odoo custom modules, Django/Flask, Node/Express, PostgreSQL/MySQL, OAuth2, payment gateways, e‑invoicing.</p>
+          <div class="mt-4 flex flex-wrap gap-2 text-xs">
+            <span class="rounded-full bg-primary-500/15 px-3 py-1">Odoo 15/16/17/18</span>
+            <span class="rounded-full bg-primary-500/15 px-3 py-1">REST • JWT</span>
+            <span class="rounded-full bg-primary-500/15 px-3 py-1">PostgreSQL • MySQL</span>
+          </div>
+        </div>
+        <div class="glass rounded-2xl border border-white/10 p-6 shadow-soft">
+          <h3 class="font-semibold text-lg">Frontend & UX</h3>
+          <p class="mt-2 text-white/70">React/Next, Tailwind, component‑driven UIs, accessibility, responsive layouts, micro‑interactions.</p>
+          <div class="mt-4 flex flex-wrap gap-2 text-xs">
+            <span class="rounded-full bg-primary-500/15 px-3 py-1">React • Next.js</span>
+            <span class="rounded-full bg-primary-500/15 px-3 py-1">Tailwind</span>
+            <span class="rounded-full bg-primary-500/15 px-3 py-1">A11y</span>
+          </div>
+        </div>
+        <div class="glass rounded-2xl border border-white/10 p-6 shadow-soft">
+          <h3 class="font-semibold text-lg">DevOps & Auth</h3>
+          <p class="mt-2 text-white/70">Docker, CI/CD, Keycloak/SSO, secure deployments, monitoring.</p>
+          <div class="mt-4 flex flex-wrap gap-2 text-xs">
+            <span class="rounded-full bg-primary-500/15 px-3 py-1">Docker</span>
+            <span class="rounded-full bg-primary-500/15 px-3 py-1">Keycloak</span>
+            <span class="rounded-full bg-primary-500/15 px-3 py-1">Nginx</span>
+          </div>
+        </div>
+        <div class="glass rounded-2xl border border-white/10 p-6 shadow-soft">
+          <h3 class="font-semibold text-lg">Consulting</h3>
+          <p class="mt-2 text-white/70">Odoo implementations, module marketplaces, Saudi & global markets, performance tuning.</p>
+          <div class="mt-4 flex flex-wrap gap-2 text-xs">
+            <span class="rounded-full bg-primary-500/15 px-3 py-1">Odoo Apps</span>
+            <span class="rounded-full bg-primary-500/15 px-3 py-1">e‑Invoicing</span>
+            <span class="rounded-full bg-primary-500/15 px-3 py-1">Performance</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- SKILLS -->
-  <section id="skills" class="bg-white py-16 px-6">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-3xl font-bold text-center mb-10">My Skills</h2>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-        <div class="p-6 bg-gray-100 rounded-xl shadow hover:shadow-lg transition">
-          <h3 class="font-semibold text-lg">Python</h3>
-        </div>
-        <div class="p-6 bg-gray-100 rounded-xl shadow hover:shadow-lg transition">
-          <h3 class="font-semibold text-lg">Odoo (15/16/17/18)</h3>
-        </div>
-        <div class="p-6 bg-gray-100 rounded-xl shadow hover:shadow-lg transition">
-          <h3 class="font-semibold text-lg">JavaScript</h3>
-        </div>
-        <div class="p-6 bg-gray-100 rounded-xl shadow hover:shadow-lg transition">
-          <h3 class="font-semibold text-lg">UI/UX Design</h3>
-        </div>
+  <section id="skills" class="section mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
+    <div class="flex items-end justify-between flex-wrap gap-4">
+      <h2 class="text-3xl font-bold">Core Skills</h2>
+      <a href="#contact" class="text-sm text-primary-300 hover:text-primary-200">Open to freelance / full‑time →</a>
+    </div>
+    <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <!-- group -->
+      <div class="glass rounded-2xl border border-white/10 p-6 shadow-soft">
+        <h3 class="font-semibold">Languages</h3>
+        <ul class="mt-3 space-y-2 text-white/80 text-sm">
+          <li>Python • JavaScript/TypeScript • PHP</li>
+          <li>SQL (PostgreSQL, MySQL)</li>
+        </ul>
+      </div>
+      <div class="glass rounded-2xl border border-white/10 p-6 shadow-soft">
+        <h3 class="font-semibold">Frameworks</h3>
+        <ul class="mt-3 space-y-2 text-white/80 text-sm">
+          <li>Odoo • Django • Flask • Express</li>
+          <li>React • Next.js • Tailwind</li>
+        </ul>
+      </div>
+      <div class="glass rounded-2xl border border-white/10 p-6 shadow-soft">
+        <h3 class="font-semibold">DevOps & Auth</h3>
+        <ul class="mt-3 space-y-2 text-white/80 text-sm">
+          <li>Docker • CI/CD</li>
+          <li>Keycloak • OAuth2 • JWT</li>
+        </ul>
+      </div>
+      <div class="glass rounded-2xl border border-white/10 p-6 shadow-soft">
+        <h3 class="font-semibold">Tools</h3>
+        <ul class="mt-3 space-y-2 text-white/80 text-sm">
+          <li>GitHub • Postman • Linux</li>
+          <li>Stripe/PayU • Webhooks</li>
+        </ul>
       </div>
     </div>
   </section>
 
   <!-- PROJECTS -->
-  <section id="projects" class="py-16 px-6">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-3xl font-bold text-center mb-10">Featured Projects</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-white rounded-xl shadow hover:shadow-lg overflow-hidden">
-          <img src="https://source.unsplash.com/600x400/?technology,app" alt="Project 1" class="w-full h-40 object-cover">
-          <div class="p-4">
-            <h3 class="font-semibold text-xl mb-2">Odoo Real Estate Inspection App</h3>
-            <p class="text-gray-600">Offline-first inspection app with photo upload, Excel/PDF export, and IndexedDB storage.</p>
-          </div>
+  <section id="projects" class="section mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
+    <div class="flex items-end justify-between flex-wrap gap-4">
+      <h2 class="text-3xl font-bold">Selected Projects</h2>
+      <a href="https://github.com/mohammadhusen" target="_blank" class="text-sm text-primary-300 hover:text-primary-200">See all on GitHub →</a>
+    </div>
+    <div class="mt-8 grid gap-6 md:grid-cols-2">
+      <!-- CARD 1 -->
+      <article class="group relative overflow-hidden rounded-3xl border border-white/10 bg-base-800/70 glass p-6 shadow-soft">
+        <img alt="project" class="h-48 w-full rounded-2xl object-cover transition group-hover:scale-105" src="https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=1200&auto=format&fit=crop" />
+        <div class="mt-5">
+          <h3 class="text-xl font-semibold">Chatter Button Visibility Manager (Odoo 18)</h3>
+          <p class="mt-2 text-white/70 text-sm">A user‑level permission module that hides Send Message / Log Note / Schedule Activity buttons globally across models.</p>
         </div>
-        <div class="bg-white rounded-xl shadow hover:shadow-lg overflow-hidden">
-          <img src="https://source.unsplash.com/600x400/?business,erp" alt="Project 2" class="w-full h-40 object-cover">
-          <div class="p-4">
-            <h3 class="font-semibold text-xl mb-2">Chatter Visibility Manager</h3>
-            <p class="text-gray-600">Odoo 18 module to control chatter buttons per user across all models.</p>
-          </div>
+        <div class="mt-4 flex flex-wrap gap-2 text-xs">
+          <span class="rounded-full bg-primary-500/15 px-3 py-1">Odoo 18</span>
+          <span class="rounded-full bg-primary-500/15 px-3 py-1">Python</span>
+          <span class="rounded-full bg-primary-500/15 px-3 py-1">Access Rules</span>
         </div>
-        <div class="bg-white rounded-xl shadow hover:shadow-lg overflow-hidden">
-          <img src="https://source.unsplash.com/600x400/?developer,coding" alt="Project 3" class="w-full h-40 object-cover">
-          <div class="p-4">
-            <h3 class="font-semibold text-xl mb-2">Custom ERP Extensions</h3>
-            <p class="text-gray-600">Developed multiple modules enhancing invoicing, delivery, taxation, and vendor discounts.</p>
-          </div>
+        <div class="mt-5 flex items-center gap-3">
+          <a class="rounded-lg bg-white text-base-900 px-3 py-2 text-sm font-semibold" href="#">Live / Demo</a>
+          <a class="rounded-lg border border-white/15 px-3 py-2 text-sm" href="https://github.com/mohammadhusen" target="_blank">GitHub</a>
+        </div>
+      </article>
+      <!-- CARD 2 -->
+      <article class="group relative overflow-hidden rounded-3xl border border-white/10 bg-base-800/70 glass p-6 shadow-soft">
+        <img alt="project" class="h-48 w-full rounded-2xl object-cover transition group-hover:scale-105" src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop" />
+        <div class="mt-5">
+          <h3 class="text-xl font-semibold">Real Estate Inspection (Offline‑first PWA)</h3>
+          <p class="mt-2 text-white/70 text-sm">HTML/CSS/JS app with IndexedDB offline storage, photo uploads, QA components, Excel export & project/floor/area taxonomy.</p>
+        </div>
+        <div class="mt-4 flex flex-wrap gap-2 text-xs">
+          <span class="rounded-full bg-primary-500/15 px-3 py-1">IndexedDB</span>
+          <span class="rounded-full bg-primary-500/15 px-3 py-1">PWA</span>
+          <span class="rounded-full bg-primary-500/15 px-3 py-1">Excel Export</span>
+        </div>
+        <div class="mt-5 flex items-center gap-3">
+          <a class="rounded-lg bg-white text-base-900 px-3 py-2 text-sm font-semibold" href="#">Live / Demo</a>
+          <a class="rounded-lg border border-white/15 px-3 py-2 text-sm" href="https://github.com/mohammadhusen" target="_blank">GitHub</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="section mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
+    <h2 class="text-3xl font-bold">Experience</h2>
+    <ol class="mt-8 relative border-s border-white/10">
+      <li class="mb-10 ms-6">
+        <span class="absolute -start-3 flex h-6 w-6 items-center justify-center rounded-full bg-primary-500/90 ring-8 ring-base-900"></span>
+        <h3 class="text-lg font-semibold">Software Engineer — Odoo & Full‑Stack</h3>
+        <time class="mb-1 block text-sm text-white/60">2019 — Present</time>
+        <p class="text-white/80">Custom Odoo modules, REST APIs, payment integration, e‑invoicing for Saudi, performance tuning, Dockerized deployments.</p>
+      </li>	  
+      <li class="mb-10 ms-6">
+        <span class="absolute -start-3 flex h-6 w-6 items-center justify-center rounded-full bg-primary-500/60 ring-8 ring-base-900"></span>
+		<h3 class="text-lg font-semibold">PHP Developer</h3>
+		<time class="mb-1 block text-sm text-white/60">2017 — 2019</time>
+		<p class="text-white/80">
+		  Built and maintained dynamic web applications using Core PHP, WordPress, CodeIgniter, Laravel, and Yii. 
+		  Experienced in API integrations, database optimization, custom plugin/module development, and delivering 
+		  secure, scalable back-end architectures.
+		</p>
+
+      </li>
+    </ol>
+  </section>
+
+  <!-- TESTIMONIALS (light carousel) -->
+  <section class="section mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
+    <div class="glass rounded-3xl border border-white/10 p-8 shadow-soft">
+      <div class="flex items-start justify-between gap-6">
+        <div>
+          <h2 class="text-3xl font-bold">What clients say</h2>
+          <p class="mt-2 text-white/70">Real feedback from teams I worked with.</p>
+        </div>
+        <div class="hidden sm:flex gap-2">
+          <button id="tPrev" class="rounded-xl border border-white/10 px-3 py-2">Prev</button>
+          <button id="tNext" class="rounded-xl bg-white text-base-900 px-3 py-2">Next</button>
+        </div>
+      </div>
+      <div id="tape" class="mt-6 overflow-hidden">
+        <div id="tInner" class="flex gap-6 will-change-transform">
+          <figure class="min-w-[320px] max-w-sm rounded-2xl border border-white/10 bg-base-900/60 p-6">
+            <blockquote class="text-white/80">“Exceptionally fast delivery of a complex Odoo module. Clean code, great communication.”</blockquote>
+            <figcaption class="mt-4 text-sm text-white/60">— Product Lead, SaaS</figcaption>
+          </figure>
+          <figure class="min-w-[320px] max-w-sm rounded-2xl border border-white/10 bg-base-900/60 p-6">
+            <blockquote class="text-white/80">“Turned our inspection workflow into a smooth offline PWA. Team loves it.”</blockquote>
+            <figcaption class="mt-4 text-sm text-white/60">— Operations Head, Real Estate</figcaption>
+          </figure>
+          <figure class="min-w-[320px] max-w-sm rounded-2xl border border-white/10 bg-base-900/60 p-6">
+            <blockquote class="text-white/80">“Reliable, security‑minded engineer. Highly recommend.”</blockquote>
+            <figcaption class="mt-4 text-sm text-white/60">— CTO, Fintech</figcaption>
+          </figure>
         </div>
       </div>
     </div>
   </section>
 
-<!-- CONTACT -->
-<section id="contact" class="bg-blue-600 py-16 px-6 text-white text-center">
-  <h2 class="text-3xl font-bold mb-6">Get in Touch</h2>
-  <p class="mb-6">I’d love to collaborate on exciting projects. Feel free to connect!</p>
-  
-  <!-- Email -->
-  <a href="mailto:mhusenit@gmail.com" 
-     class="px-6 py-3 bg-white text-blue-600 rounded-full font-semibold hover:bg-gray-100 inline-block mb-4">
-    Email Me
-  </a>
-  
-  <div class="mt-4 flex justify-center gap-4 flex-wrap">
-    <!-- LinkedIn -->
-    <a href="https://www.linkedin.com/in/mohammad-malek-313aa5144/" target="_blank" 
-       class="px-6 py-3 bg-white text-blue-600 rounded-full font-semibold hover:bg-gray-100 inline-block">
-      LinkedIn
-    </a>
-    
-    <!-- WhatsApp -->
-    <a href="https://wa.me/917405292322" target="_blank"
-       class="px-6 py-3 bg-green-500 hover:bg-green-600 text-white rounded-full font-semibold inline-flex items-center gap-2 shadow-lg transition duration-300">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/512px-WhatsApp.svg.png" 
-           alt="WhatsApp" class="w-5 h-5">
-      Chat on WhatsApp
-    </a>
-  </div>
-</section>
+  <!-- CONTACT -->
+  <section id="contact" class="section mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
+    <div class="grid lg:grid-cols-2 gap-10">
+      <div>
+        <h2 class="text-3xl font-bold">Let’s build something</h2>
+        <p class="mt-3 text-white/70">Best for Odoo custom modules, API backends, and polished web apps. I’m based in India (IST) and work with global teams.</p>
+        <div class="mt-6 grid gap-3 text-white/80">
+          <a class="inline-flex items-center gap-2" href="mailto:mhusenit@gmail.com"><span class="h-2 w-2 rounded-full bg-primary-400"></span> mhusenit@gmail.com</a>
+          <a class="inline-flex items-center gap-2" target="_blank" href="https://wa.me/7405292322"><span class="h-2 w-2 rounded-full bg-primary-400"></span> WhatsApp</a>
+          <a class="inline-flex items-center gap-2" target="_blank" href="https://github.com/mohammadhusen"><span class="h-2 w-2 rounded-full bg-primary-400"></span> github.com/mohammadhusen</a>
+        </div>
+        <a href="#" class="mt-8 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-primary-500 to-sky-500 px-4 py-3 text-sm font-semibold shadow-soft">Download Resume</a>
+      </div>
+      <form action="https://formspree.io/f/your_id" method="POST" class="glass rounded-2xl border border-white/10 p-6 shadow-soft">
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label class="text-sm text-white/70">Name</label>
+            <input required name="name" class="mt-1 w-full rounded-xl border border-white/10 bg-base-900/60 px-3 py-2 outline-none focus:ring-2 focus:ring-primary-400" />
+          </div>
+          <div>
+            <label class="text-sm text-white/70">Email</label>
+            <input required name="email" type="email" class="mt-1 w-full rounded-xl border border-white/10 bg-base-900/60 px-3 py-2 outline-none focus:ring-2 focus:ring-primary-400" />
+          </div>
+          <div class="sm:col-span-2">
+            <label class="text-sm text-white/70">Message</label>
+            <textarea required name="message" rows="5" class="mt-1 w-full rounded-xl border border-white/10 bg-base-900/60 px-3 py-2 outline-none focus:ring-2 focus:ring-primary-400"></textarea>
+          </div>
+        </div>
+        <button class="mt-4 w-full rounded-xl bg-white px-4 py-3 font-semibold text-base-900 shadow-soft hover:-translate-y-0.5 transition">Send</button>
+        <p class="mt-2 text-xs text-white/50">Powered by Formspree. Replace <code>your_id</code> with your endpoint.</p>
+      </form>
+    </div>
+  </section>
 
   <!-- FOOTER -->
-  <footer class="bg-gray-900 text-gray-400 text-center py-6 text-sm">
-    © 2025 Mohammad Malek. All Rights Reserved.
+  <footer class="border-t border-white/10 py-10">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-sm text-white/60">© <span id="year"></span> Mohammad Husen. All rights reserved.</p>
+      <div class="flex items-center gap-4 text-sm">
+        <a class="hover:text-primary-300" href="#home">Top</a>
+        <a class="hover:text-primary-300" target="_blank" href="https://instagram.com/definet49">Instagram</a>
+        <a class="hover:text-primary-300" target="_blank" href="mailto:mhusenit@gmail.com">Email</a>
+      </div>
+    </div>
   </footer>
 
+  <!-- JS: theme, mobile menu, reveal, testimonials -->
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Theme toggle (persist)
+    const html = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+    const sun = document.getElementById('sun');
+    const moon = document.getElementById('moon');
+    const setIcon = () => {
+      const dark = html.classList.contains('dark');
+      sun.classList.toggle('hidden', !dark);
+      moon.classList.toggle('hidden', dark);
+    };
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      html.classList.add('dark');
+    }
+    setIcon();
+    themeToggle.addEventListener('click', () => {
+      html.classList.toggle('dark');
+      localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+      setIcon();
+    });
+
+    // Mobile nav
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn?.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+    // Reveal on scroll
+    const reveal = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('animate-fadeUp');
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.section, .glass').forEach((el) => reveal.observe(el));
+
+    // Simple testimonials slider
+    const tape = document.getElementById('tInner');
+    let x = 0; let idx = 0;
+    const slide = () => { x = -(idx * (tape.children[0].offsetWidth + 24)); tape.style.transform = `translateX(${x}px)`; };
+    document.getElementById('tPrev')?.addEventListener('click', () => { idx = (idx - 1 + tape.children.length) % tape.children.length; slide(); });
+    document.getElementById('tNext')?.addEventListener('click', () => { idx = (idx + 1) % tape.children.length; slide(); });
+
+    // Accessibility skip link
+    const skip = document.createElement('a');
+    skip.href = '#home';
+    skip.className = 'sr-only focus:not-sr-only fixed top-2 left-2 z-[999] rounded bg-white px-3 py-2 text-sm font-semibold text-base-900 shadow';
+    skip.textContent = 'Skip to content';
+    document.body.appendChild(skip);
+  </script>
 </body>
 </html>
-
